@@ -201,11 +201,6 @@ const AnimatedCanvas = () => {
       }
     }
 
-    function bounceName() {
-      shake();
-      setTimeout(bounceName, 30);
-    }
-
     function bounceBubbles() {
       draw();
       update();
@@ -218,15 +213,6 @@ const AnimatedCanvas = () => {
 
       if (pointCollectionRef.current) {
         pointCollectionRef.current.draw(bubbleShape, reset);
-      }
-    }
-
-    function shake() {
-      const ctx = canvasRef.current.getContext("2d");
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-
-      if (pointCollectionRef.current) {
-        pointCollectionRef.current.shake();
       }
     }
 
@@ -324,12 +310,15 @@ const AnimatedCanvas = () => {
     bounceBubbles();
 
     // Cleanup event listeners on component unmount
+    const canvasElement = canvasRef.current;
     return () => {
       $(window)
         .unbind("resize", updateCanvasDimensions)
         .unbind("mousemove", onMove);
-      canvasRef.current.ontouchmove = null;
-      canvasRef.current.ontouchstart = null;
+      if (canvasElement) {
+        canvasElement.ontouchmove = null;
+        canvasElement.ontouchstart = null;
+      }
     };
   }, []);
 
