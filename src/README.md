@@ -29,29 +29,19 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [View](https://animatedcanvascomponent.netlify.app/)
 
 ## My process
 
 ### Built with
 
 - Semantic HTML5 markup
-- [Bootstrap](https://getbootstrap.com/) - CSS library
 - CSS custom properties
-- [Sass](https://sass-lang.com/) - Preprocessor scripting language
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- Mobile-Responsive Design
+
 - JavaScript - Scripting language
 - [jQuery](https://jquery.com/) - JS library
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-- [Photoshop](https://www.adobe.com/products/photoshop.html) - Image editor
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+  editor
 
 ### What I learned
 

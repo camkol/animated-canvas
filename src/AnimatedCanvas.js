@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import $ from "jquery";
 import alphabet from "./alphabet"; // Adjust the path as necessary
 
-const AnimatedCanvas = () => {
+const AnimatedCanvas = ({ shape = "circle" }) => {
   const canvasRef = useRef(null);
   const pointCollectionRef = useRef(null);
 
@@ -129,6 +129,59 @@ const AnimatedCanvas = () => {
             this.radius * 1.5,
             this.radius * 1.5
           );
+        } else if (bubbleShape === "triangle") {
+          ctx.beginPath();
+          ctx.moveTo(this.curPos.x + dx, this.curPos.y + dy - this.radius);
+          ctx.lineTo(
+            this.curPos.x + dx - this.radius,
+            this.curPos.y + dy + this.radius
+          );
+          ctx.lineTo(
+            this.curPos.x + dx + this.radius,
+            this.curPos.y + dy + this.radius
+          );
+          ctx.closePath();
+          ctx.fill();
+        } else if (bubbleShape === "star") {
+          const spikes = 5;
+          const outerRadius = this.radius;
+          const innerRadius = this.radius / 2;
+          let rot = (Math.PI / 2) * 3;
+          let x = this.curPos.x + dx;
+          let y = this.curPos.y + dy;
+          const step = Math.PI / spikes;
+
+          ctx.beginPath();
+          ctx.moveTo(x, y - outerRadius);
+          for (let i = 0; i < spikes; i++) {
+            x = this.curPos.x + dx + Math.cos(rot) * outerRadius;
+            y = this.curPos.y + dy + Math.sin(rot) * outerRadius;
+            ctx.lineTo(x, y);
+            rot += step;
+
+            x = this.curPos.x + dx + Math.cos(rot) * innerRadius;
+            y = this.curPos.y + dy + Math.sin(rot) * innerRadius;
+            ctx.lineTo(x, y);
+            rot += step;
+          }
+          ctx.lineTo(this.curPos.x + dx, this.curPos.y + dy - outerRadius);
+          ctx.closePath();
+          ctx.fill();
+        } else if (bubbleShape === "pentagon") {
+          const x = this.curPos.x + dx;
+          const y = this.curPos.y + dy;
+          const r = this.radius;
+          const angle = (2 * Math.PI) / 5;
+
+          ctx.beginPath();
+          for (let i = 0; i < 5; i++) {
+            ctx.lineTo(
+              x + r * Math.cos(angle * i - Math.PI / 2),
+              y + r * Math.sin(angle * i - Math.PI / 2)
+            );
+          }
+          ctx.closePath();
+          ctx.fill();
         } else {
           ctx.beginPath();
           ctx.arc(
