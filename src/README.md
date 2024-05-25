@@ -22,6 +22,7 @@ Animated Canvas
 Users should be able to:
 
 - View animated letters reacting the mouses movement.
+- Can set colors, text, and shape
 
 ### Screenshot
 

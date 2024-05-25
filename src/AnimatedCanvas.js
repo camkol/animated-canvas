@@ -2,7 +2,17 @@ import React, { useEffect, useRef } from "react";
 import $ from "jquery";
 import alphabet from "./alphabet"; // Adjust the path as necessary
 
-const AnimatedCanvas = ({ shape = "circle" }) => {
+const AnimatedCanvas = ({
+  display = "need words",
+  shape = "circle" /*square, triangle, star, pentagon */,
+  color = [
+    [0, 100, 63],
+    [40, 100, 60],
+    [75, 100, 40],
+    [196, 77, 55],
+    [280, 50, 60],
+  ],
+}) => {
   const canvasRef = useRef(null);
   const pointCollectionRef = useRef(null);
 
@@ -349,15 +359,16 @@ const AnimatedCanvas = ({ shape = "circle" }) => {
     document.rotationForce = 0.0;
     document.Friction = 0.85;
 
-    const red = [0, 100, 63];
-    const orange = [40, 100, 60];
-    const green = [75, 100, 40];
-    const blue = [196, 77, 55];
-    const purple = [280, 50, 60];
+    // const red = [0, 100, 63];
+    // const orange = [40, 100, 60];
+    // const green = [75, 100, 40];
+    // const blue = [196, 77, 55];
+    // const purple = [280, 50, 60];
 
-    const wordToDisplay = "Cameron";
-    const letterColors = [red, orange, green, blue, purple];
-    let bubbleShape = "circle";
+    const wordToDisplay = display;
+    // const letterColors = [red, orange, green, blue, purple];
+    const letterColors = color;
+    let bubbleShape = shape;
 
     drawName(wordToDisplay, letterColors);
     bounceBubbles();
@@ -373,7 +384,7 @@ const AnimatedCanvas = ({ shape = "circle" }) => {
         canvasElement.ontouchstart = null;
       }
     };
-  }, []);
+  }, [display, shape, color]);
 
   return (
     <div>
