@@ -1,4 +1,4 @@
-Animated Canvas
+Animated Canvas Component
 
 ## Table of contents
 
